@@ -3,14 +3,14 @@ TRANSLATEJS
 
 
  - header -
-bagian navbar di polkan kekiri dan kanan full
-tulisan di map nya ter"scratch"
+[V] bagian navbar di polkan kekiri dan kanan full
+[V] tulisan di map nya ter"scratch"
 dibagian pull-right tambah form search
 	tulisan "Direktorat Jendral Imigrasi...." diganti kuning emas glossy.
 
 
  - footer -
-diperhalus warna dan font nya.
+[V] diperhalus warna dan font nya.
 
 
 - nambah dropdown vertical di berita terbaru dan populer (judulnya saja)

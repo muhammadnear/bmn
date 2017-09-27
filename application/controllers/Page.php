@@ -19,6 +19,31 @@ class Page extends CI_Controller {
 		return $tanggal.' '.$bulan.' '.$tahun;		 
 	}	
 
+	function header_lighting($id)
+	{
+		$menu = $this->Page_model->get_menu();
+		//echo var_dump($id);
+		foreach ($menu as $key) 
+		{
+			$idmn = explode('=', $key->link);
+			
+			if(!empty($idmn[1]))
+			{
+				$temp = explode('/', $idmn[1]);
+				if($id == $temp[0])
+					return $key->id_menu;
+			}
+			$submenu = $this->Page_model->get_submenu_byIdmenu($key->id_menu);
+			foreach ($submenu as $key2) 
+			{
+				$idmn = explode('=', $key2->link);
+				if(!empty($idmn[1]))
+				if($id == $idmn[1])
+					return $key->id_menu;
+			}
+		}
+	}
+
 	function cmp($a, $b)
 	{
 	    return strcmp($a->urutan, $b->urutan);
@@ -29,7 +54,7 @@ class Page extends CI_Controller {
 		$this->tampil();
 	}
 
-	public function tampil($tampil = 'home')
+	public function tampil($tampil = 'home', $id_menu = 53)/*diambil dari default id home di database*/
 	{
 		/*$kirim['nama_files'] = array();*/
 		$flag = 0;
@@ -53,7 +78,8 @@ class Page extends CI_Controller {
 		usort($menu, array($this,"cmp"));
 		
 		$kirim['menu'] = $menu;
-		
+		$kirim['header_lighting'] = $id_menu;
+
 		foreach ($menu as $key => $value) 
 		{
 			$submenu = $this->Page_model->get_submenu_byIdmenu($value->id_menu);
@@ -69,7 +95,10 @@ class Page extends CI_Controller {
 			$kirim['gallery'] = $this->Page_model->get_gallery();
 		
 		if($tampil == 'halaman')
+		{
 			$kirim['halaman'] = $this->Page_model->get_halaman_byId($this->input->get('id'));
+			$kirim['header_lighting'] = $this->header_lighting($this->input->get('id'));
+		}
 
 		if($tampil == 'artikel_detail')
 		{
