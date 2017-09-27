@@ -3,8 +3,7 @@ TRANSLATEJS
 
 
  - header -
-[V] bagian navbar di polkan kekiri dan kanan full
-[V] tulisan di map nya ter"scratch"
+tulisan diganti
 dibagian pull-right tambah form search
 	tulisan "Direktorat Jendral Imigrasi...." diganti kuning emas glossy.
 
@@ -12,7 +11,7 @@ dibagian pull-right tambah form search
  - footer -
 [V] diperhalus warna dan font nya.
 
-
+- background dganti abu-abu dengan corak (kayak background whatsapp)
 - nambah dropdown vertical di berita terbaru dan populer (judulnya saja)
 - click berapa dalam sehari itu
 - slider berita (gambar, judul, cuplikan isi berita)
