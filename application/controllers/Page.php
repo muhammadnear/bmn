@@ -106,8 +106,9 @@ class Page extends CI_Controller {
 		{
 			$this->Page_model->update_click_article($this->input->get('id'));
 			$kirim['single_article'] = $this->Page_model->get_artikel_byId($this->input->get('id'));
+			
 			if(empty($kirim['single_article']))
-				$kirim['konten'] = "not_found";
+				$kirim['konten'] = "page/content/not_found";
 			//echo var_dump($kirim['single_article']);
 			$komentar = $this->Page_model->get_komentar_byIdArtikel($this->input->get('id'));
 			foreach ($komentar as $key => $value) 

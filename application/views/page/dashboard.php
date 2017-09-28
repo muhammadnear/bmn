@@ -150,7 +150,7 @@
 									<?php
 										foreach ($artikel_konten_1 as $key => $value) 
 										{ 
-											echo "<li><img src='".base_url()."assets/media/articles/".$value->gambar."'><a href='".base_url()."index.php/page/index/artikel_detail'>".$value->judul."</a></li>";// &id=$data[id_artikel]
+											echo "<li><img src='".base_url()."assets/media/articles/".$value->gambar."'><a href='".base_url()."index.php/page/tampil/artikel_detail?id=$value->id_artikel>'>".$value->judul."</a></li>";// &id=$data[id_artikel]
 										}
 									?>
 								</ul>
@@ -160,7 +160,7 @@
 									<?php
 										foreach ($artikel_konten_2 as $key => $value) 
 										{
-											echo "<li><img src='".base_url()."assets/media/articles/".$value->gambar."'><a href='".base_url()."index.php/page/index/artikel_detail'>".$value->judul."</a></li>";// &id=$data[id_artikel]
+											echo "<li><img src='".base_url()."assets/media/articles/".$value->gambar."'><a href='".base_url()."index.php/page/tampil/artikel_detail?id=$value->id_artikel'>".$value->judul."</a></li>";// &id=$data[id_artikel]
 										}
 									?>
 								</ul>
@@ -170,7 +170,7 @@
 									<?php
 										foreach ($artikel_konten_3 as $key => $value) 
 										{
-											echo "<li><b>".$value->nama.": </b> <a href='".base_url()."index.php/page/index/artikel_detail'>".$value->komentar."</a></li>"; //&id=$data[id_artikel]
+											echo "<li><b>".$value->nama.": </b> <a href='".base_url()."index.php/page/tampil/artikel_detail?id=$value->id_artikel'>".$value->komentar."</a></li>"; //&id=$data[id_artikel]
 										}
 									?>
 								</ul>
@@ -214,7 +214,7 @@
 		                                    <?php echo $isi; ?>
 		                                </div>
 		                                <ul>
-		                                    <li><a href="#">Buka di Laman Utama</a></li>
+		                                    <li><a href="<?php echo base_url()?>index.php/page/tampil/artikel_detail?id=<?php echo $data->id_artikel;?>">Buka di Laman Utama</a></li>
 		                                </ul>
 		                            </div>
 		                        </div>
