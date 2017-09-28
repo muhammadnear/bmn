@@ -170,7 +170,7 @@
 									<?php
 										foreach ($artikel_konten_3 as $key => $value) 
 										{
-											echo "<li><b>".$value->nama.": </b> <a href='".base_url()."index.php/page/tampil/artikel_detail?id=$value->id_artikel'>".$value->komentar."</a></li>"; //&id=$data[id_artikel]
+											echo "<li><b>".$value->nama.": </b> ".$value->komentar."</li>"; //&id=$data[id_artikel]
 										}
 									?>
 								</ul>
