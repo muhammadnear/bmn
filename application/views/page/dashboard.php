@@ -12,10 +12,19 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">		
 		<link href="<?php echo base_url()?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		
+		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-2.0.2.min.js"></script>		
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/style.css">
 		<link rel="shortcut icon" href="<?php echo base_url()?>assets/imigrasi/logo-imigrasi.png">
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-2.0.2.min.js"></script>
+		<link rel="stylesheet" href="<?php echo base_url()?>assets/font-awesome/css/font-awesome.min.css">
+
+
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/page_slider/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/page_slider/css/jquery.jscrollpane.css" media="all" />
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
+
+
 		<style type="text/css">
 			#footer
 			{
@@ -27,13 +36,15 @@
 				background: linear-gradient(45deg, rgba(34,34,34,1) 0%, rgba(34,34,34,1) 1%, rgba(66,66,66,1) 50%, rgba(34,34,34,1) 100%); /* w3c */
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#222222',GradientType=1 ); /* ie6-9 */
 			}
+
+			body {background:#ecebe8 url(<?php echo base_url()?>assets/media/images/pattern.png) repeat;}
 		</style>
 	</head>
 	<body>
 		<header id="header" style="background-color: #00345c;"> 
 				<div class="row">
-					<div class="col-md-10" style="margin-left: 6%;"><img src="<?php echo base_url()?>assets/media/images/banner_2.png" width="100%"></div>
-					<div class="col-md-3" style="color: white; font-size: 12px; position: absolute; right: 20px;">
+					<div class="col-md-10" style="margin-left: 6%;"><img src="<?php echo base_url()?>assets/media/images/banner_2.png" width="90%"></div>
+					<div class="col-md-3" style="color: white; font-size: 12px; position: absolute; right: -40px;">
 						Jl. H. R. Rasuna Said Kav.X-6 Nomor 8 <br>
 						Kuningan, Jakarta Selatan<br>
 						Call Center : (021) 52920481<br>
@@ -84,8 +95,15 @@
 										} ?> 
 										
 								</ul>
-								<div class="navbar-nav pull-right">
-									<form><input type="text" name="search" placeholder="Search..>"><img src=""></form>
+								<div class="col-sm-3 col-md-3 pull-right">
+									<form class="navbar-form" role="search">
+										<div class="input-group">
+											<input class="form-control" type="text" name="search" placeholder="Search..." />
+											<div class="input-group-btn" >
+												<button style="height: 34px;" class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+											</div>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -110,6 +128,8 @@
 									$kirim['single_article'] = $single_article[0];
 								if(!empty($komentar))
 									$kirim['komentar'] = $komentar;
+								if(!empty($sliders))
+									$kirim['sliders'] = $sliders;
 
 								$this->load->view($konten, $kirim); 
 							?> 
@@ -159,8 +179,51 @@
 						
 						<video src="<?php echo base_url()?>assets/media/videos/imigrasi.mp4" width="100%" controls></video>
 						
-					</div>	
+					</div>
+
 				</div>
+				<?php if($konten == "page/content/home") { ?>
+				<div class="row">
+					<div id="ca-container" class="ca-container">
+		                <div class="ca-wrapper">
+		                	<?php	
+								foreach ($semua_artikel as $data) 
+								{
+									$isi_1 = substr($data->isi,0,100);
+									$isi_1 = substr($data->isi,0,strrpos($isi_1," "));
+
+									$isi = substr($data->isi,0,500);
+									$isi = substr($data->isi,0,strrpos($isi," "));
+
+							?>
+		                    <div class="ca-item">
+		                        <div class="ca-item-main">
+		                            <div class="ca-icon" <?php if($data->gambar!="") { ?> style="background-image:url(<?php echo base_url()?>assets/media/articles/<?php echo $data->gambar; ?>);" <?php } ?>></div>
+		                            <h3><?php echo $data->judul; ?></h3>
+		                            <h4>
+		                                <span class="ca-quote">&ldquo;</span>
+		                                <span><?php echo $isi_1; ?> ...</span>
+		                            </h4>
+		                                <a href="#" class="ca-more">selengkapnya...</a>
+		                        </div>
+		                        <div class="ca-content-wrapper">
+		                            <div class="ca-content">
+		                                <h6><?php echo $data->judul; ?></h6>
+		                                <a href="#" class="ca-close">tutup</a>
+		                                <div class="ca-content-text">
+		                                    <?php echo $isi; ?>
+		                                </div>
+		                                <ul>
+		                                    <li><a href="#">Buka di Laman Utama</a></li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <?php } ?>
+		                </div>
+		            </div>
+				</div>
+				<?php } ?>
 			</div>
 		</content>
 			
@@ -172,7 +235,13 @@
 			</div>
 		</footer>
 		
-		
 		<script type="text/javascript" src="<?php echo base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>assets/page_slider/js/jquery.easing.1.3.js"></script>
+        <!-- the jScrollPane script -->
+        <script type="text/javascript" src="<?php echo base_url()?>assets/page_slider/js/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="<?php echo base_url()?>assets/page_slider/js/jquery.contentcarousel.js"></script>
+        <script type="text/javascript">
+            $('#ca-container').contentcarousel();
+        </script>
 	</body>
 </html>

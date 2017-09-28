@@ -90,7 +90,9 @@ class Page extends CI_Controller {
 		$kirim['artikel_konten_1'] = $this->Page_model->get_article_byId();
 		$kirim['artikel_konten_2'] = $this->Page_model->get_article_byHits();
 		$kirim['artikel_konten_3'] = $this->Page_model->get_article_comment();
-		
+		$kirim['semua_artikel'] = $this->Page_model->get_all_article();
+		$kirim['sliders'] = $this->Page_model->get_slider();
+
 		if($tampil == 'galeri')
 			$kirim['gallery'] = $this->Page_model->get_gallery();
 		
@@ -210,9 +212,9 @@ class Page extends CI_Controller {
 		$this->load->view('page/dashboard',$kirim);
 	}
 
-	public function delete()
+	public function trying()
 	{
-
+		$this->load->view('page/slider_page');
 	}
 
 	public function submit_delete()

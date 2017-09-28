@@ -22,6 +22,11 @@
 			$value = $this->db->get('menu')->result();
 			return $value;
 		}
+		function get_slider()
+		{
+			$value = $this->db->get('slider')->result();
+			return $value;
+		}
 		function get_submenu_byIdmenu($id_menu)
 		{
 			$this->db->where('id_menu',$id_menu);
@@ -44,6 +49,11 @@
 		{
 			$this->db->where('id_artikel',$id);
 			$value = $this->db->get('komentar')->result();
+			return $value;
+		}
+		function get_all_article()
+		{
+			$value = $this->db->get('artikel')->result();
 			return $value;
 		}
 		function get_article_byId()
